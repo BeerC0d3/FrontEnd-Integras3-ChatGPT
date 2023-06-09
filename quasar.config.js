@@ -55,7 +55,9 @@ module.exports = configure(function (ctx) {
 
       env: {
         //API: ctx.dev ? 'http://192.168.100.11:8013' : 'https://www.google.com',
-        API: ctx.dev ? 'http://localhost:5002' : 'https://api-prod.com',
+        API: ctx.dev
+          ? 'http://localhost:5002'
+          : 'https://integras3-chatgpt.somee.com',
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
