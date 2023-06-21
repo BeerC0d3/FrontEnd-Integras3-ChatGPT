@@ -6,13 +6,14 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', redirect: '/app/MyChat' },
+      { path: 'app', redirect: '/app/MyChat' },
       {
         path: 'app',
         component: () => import('pages/IndexPage.vue'),
         children: [
           {
             path: '',
+
             component: () => import('../pages/chat/Index.vue'),
           },
           {
