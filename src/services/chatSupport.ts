@@ -78,7 +78,7 @@ export const addEventClick = () => {
       modelChatSetup.value.contextId = this.dataset.supportid;
       $useChat.setChatStore(this.dataset.supportid);
       $useChat.setConversationId(guid);
-      // await chatSetup(modelChatSetup.value);
+      await chatSetup(modelChatSetup.value);
       setModelConversation(contexSupport, guid);
     });
   });

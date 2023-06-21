@@ -24,3 +24,7 @@ export interface IConversation {
   contextSupportId: number;
   chat: IChat[];
 }
+
+export interface IContextHistorico {
+  Context: IConversation[];
+}

@@ -3,9 +3,10 @@
     <q-toolbar class="bg-grey-3 text-grey-8">
       <q-btn round flat icon="keyboard_arrow_left" @click="toggleLeftDrawer" />
 
-      <q-space />
-
-      <div class="text-center" style="max-width: 350px">
+      <span class="q-subtitle-2 q-pl-md text-blue-grey-13">
+        {{ selectedContext }}
+      </span>
+      <!-- <div class="text-center" style="max-width: 350px">
         <transition
           appear
           enter-active-class="animated fadeIn"
@@ -47,7 +48,7 @@
         <q-inner-loading :showing="visible">
           <q-spinner-facebook color="deep-orange" size="2em" />
         </q-inner-loading>
-      </div>
+      </div> -->
     </q-toolbar>
   </q-header>
 </template>
@@ -61,6 +62,7 @@ const bus = inject<any>('bus');
 const leftDrawerOpen = ref(true);
 const visible = ref(false);
 const $useChat = useChatStore();
+const selectedContext = ref('Chat IntegraS3 con GPT');
 
 const selectContextSupport = ref<IChatContextSupport[]>([]);
 const { resultContext, getByParentId } = useHookChat();
@@ -71,11 +73,11 @@ const model = ref<IChatContextSupport>({
 });
 
 bus.on('refreshSelectModulo', async () => {
-  visible.value = true;
-  await getByParentId($useChat.getContextSupportParentId);
-  selectContextSupport.value = resultContext.value;
-  resetSelect();
-  visible.value = false;
+  // visible.value = true;
+  // await getByParentId($useChat.getContextSupportParentId);
+  // selectContextSupport.value = resultContext.value;
+  // resetSelect();
+  // visible.value = false;
 });
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;

@@ -8,10 +8,6 @@
           class="col-6 col-xs-12 col-sm-10 col-lg-10 col-md-10"
         >
           <q-card-section class="text-center">
-            <!-- <q-avatar class="cursor-pointer">
-              <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
-
-            </q-avatar> -->
             <q-btn
               flat
               color="primary"
@@ -22,15 +18,18 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="bg-grey-2">
+      <div class="bottom-drawer">
+        <Carousel :context-support="resultParents" />
+      </div>
+      <!-- <div class="bg-grey-2">
         <p class="text-center">Mis busquedas</p>
       </div>
       <q-scroll-area style="height: 350px">
         <Questions />
-      </q-scroll-area>
-      <div class="bottom-drawer">
+      </q-scroll-area> -->
+      <!-- <div class="bottom-drawer">
         <Carousel :context-support="resultParents" />
-      </div>
+      </div> -->
     </div>
   </q-drawer>
 </template>
@@ -76,7 +75,5 @@ bus.on('drawerOpen', (drawerOpen: boolean) => {
 }
 .bottom-drawer {
   padding: 5px;
-  bottom: 0;
-  position: absolute;
 }
 </style>

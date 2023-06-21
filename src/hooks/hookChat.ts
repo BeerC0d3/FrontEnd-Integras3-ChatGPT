@@ -1,6 +1,9 @@
 import { ref } from 'vue';
 import { ContextChat } from 'src/services/chatService';
 import { IChatContextSupport } from 'src/types/chatModel';
+import { useCommonStore } from 'src/stores/all';
+
+const $useCommon = useCommonStore();
 
 const $contextChat = new ContextChat();
 const responseChatGpt = ref<any>();
@@ -8,6 +11,7 @@ const resultContext = ref<IChatContextSupport[]>([]);
 const resultParents = ref<IChatContextSupport[]>([]);
 // const result = ref<IEntityContextSupport>();
 const chatSetup = async (contextSupportModel: any) => {
+  $useCommon.Add_Request();
   await $contextChat.chatSetup(contextSupportModel);
 };
 

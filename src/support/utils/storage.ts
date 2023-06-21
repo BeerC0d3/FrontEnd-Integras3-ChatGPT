@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import { IChat, IConversation } from 'src/types/chatModel';
 import { uid as genUID } from 'quasar';
 import { useChatStore } from 'src/stores/all';
+import { as } from 'app/dist/spa/assets/index.fb3b7248';
 
 const $useChat = useChatStore();
 
@@ -73,7 +74,27 @@ export const ExistContextSupportId = (contextSupportId: number): boolean => {
 };
 
 export const Insert = (modelConversation: IConversation[]) => {
-  localStorage.setItem('chat', JSON.stringify(modelConversation));
+  const contextArray = [];
+  const storageChat = localStorage.getItem('chat');
+  //console.log(storageChat);
+  if (storageChat) {
+    //  const parseStorage = JSON.parse(storageChat) as IConversation[];
+    const contextArray = JSON.parse(storageChat);
+    contextArray.push(modelConversation[0]);
+    // contextArray.push(parseStorage);
+    //contextArray.push(modelConversation[0]);
+    // let parseStorage = JSON.parse(storageChat);
+    //parseStorage = [...parseStorage, modelConversation];
+    //console.log(parseStorage);
+    // contextArray.push(parseStorage);
+    // contextArray.push(modelConversation);
+    // localStorage.removeItem('chat');
+    //storageChat.push()
+    localStorage.setItem('chat', JSON.stringify(contextArray));
+  } else {
+    // contextArray.push(modelConversation[0]);
+    localStorage.setItem('chat', JSON.stringify(modelConversation));
+  }
 };
 export const AddQuestion = (chat: IChat) => {
   const storageChat = localStorage.getItem('chat');

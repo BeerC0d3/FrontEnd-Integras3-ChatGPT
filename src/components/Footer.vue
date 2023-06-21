@@ -1,26 +1,38 @@
 <template>
   <q-footer>
-    <q-toolbar class="bg-grey-3 text-black row">
-      <q-input
-        rounded
-        outlined
-        dense
-        class="col-grow q-mr-sm"
-        bg-color="white"
-        v-model="message"
-        placeholder="Escriba su pregunta"
-        :disable="disableTextQuestion"
-        @keyup.enter="enterQuestion"
-      />
-      <q-btn
-        round
-        color="primary"
-        flat
-        size="20px"
-        icon="send"
-        :style="styleButtom"
-      />
-    </q-toolbar>
+    <div class="q-pa-sm no-wrap items-center bg-grey-3 text-black">
+      <div class="text-grey-8" :style="styleWriting">
+        <img
+          class=""
+          src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"
+          style="width: 30px"
+        />
+        escribiendo <q-spinner-dots size="2rem" />
+      </div>
+      <div class="row">
+        <q-input
+          rounded
+          outlined
+          dense
+          class="col-grow q-mr-sm"
+          bg-color="white"
+          v-model="message"
+          placeholder="Escriba su pregunta"
+          :disable="disableTextQuestion"
+          @keyup.enter="enterQuestion"
+        />
+        <q-btn
+          round
+          color="primary"
+          flat
+          size="20px"
+          icon="send"
+          :style="styleButtom"
+          @click="enterQuestion"
+          style="top: -0px; position: relative"
+        />
+      </div>
+    </div>
   </q-footer>
 </template>
 <script setup lang="ts">
@@ -42,7 +54,11 @@ import { store } from 'quasar/wrappers';
 const $router = useRouter();
 const $route = useRoute();
 const $useChat = useChatStore();
+const visibleWriting = ref(false);
 
+const styleWriting = computed(() => ({
+  display: visibleWriting.value ? 'block' : 'none',
+}));
 // const modelChatSetup = ref<IChatModel>({
 //   contextId: 0,
 //   conversationId: '1fa84f61-5717-4562-b3fc-2c963f66afa5',
@@ -100,6 +116,10 @@ bus.on(
     //$useChat.setChatStore(contexSupport.id);
   }
 );
+
+bus.on('visibleWriting', (isVisible: boolean) => {
+  visibleWriting.value = isVisible;
+});
 
 // const addConversation = () => {
 //   disableTextQuestion.value = false;

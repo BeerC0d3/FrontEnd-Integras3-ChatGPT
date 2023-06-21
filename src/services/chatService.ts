@@ -15,13 +15,8 @@ export class ContextChat {
   async chat(contextChat: any): Promise<any> {
     const { data } = await api.post('/api/ContextoSoporte/Chat/', contextChat);
 
+    //return data;
     return data.choices[0].message.content;
-    // await api
-    //   .post('/api/ContextoSoporte/Chat/', contextChat)
-    //   .then(async (response) => {
-    //     return response.data.choices[0].message.content;
-    //     //console.log(response.data.choices[0].message.content);
-    //   });
   }
   async GetByParentId(parentId: number): Promise<IChatContextSupport> {
     const { data } = await api.get(

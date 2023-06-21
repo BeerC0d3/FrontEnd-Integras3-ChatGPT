@@ -184,7 +184,7 @@ bus.on('goQuestion', (guidAnswer: string) => {
 onMounted(async () => {
   // chatArray.value.items = Storage.GetChatByContextSupportId();
   if ($useChat.geContextSupportId == 0) {
-    $router.push('/app');
+    $router.push('/app/MyChat');
   } else {
     chatArray.value = Storage.GetChatByContextSupportId()?.chat;
   }
