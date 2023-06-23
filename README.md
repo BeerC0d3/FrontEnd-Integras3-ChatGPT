@@ -105,6 +105,44 @@ Permite obtener un contexto especifico dentro de todos los contextos guardados.
 <table>
   <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
   <tbody>
+    <tr><td>parentId</td><td>Int</td><td>Identificador dedel contexto a buscar</td></tr>    
+  </tbody></table>
+
+#### JSON de Salida
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador del contexto</td></tr>
+    <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
+    <tr><td>logo</td><td>String</td><td>Ruta del logotipo</td></tr>
+		<tr><td>file</td><td>String</td><td>Ruta del contexto</td></tr>
+  </tbody></table>
+
+### GetAll
+Permite obtener el listado de todos los contextos guardados.
+
+#### JSON de Entrada
+No Aplica
+
+#### JSON de Salida
+Lista de
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador del contexto</td></tr>
+    <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
+    <tr><td>logo</td><td>String</td><td>Ruta del logotipo</td></tr>
+		<tr><td>file</td><td>String</td><td>Ruta del contexto</td></tr>
+		<tr><td>contextSupportChildren</td><td>List</td><td>Listado de elementos con la misma estructura (id, name, logo, file, contextSupportChildren), en caso de que el contexto actual contenga contextos hijos</td></tr>
+  </tbody></table>
+
+### GetById
+Permite obtener un contexto especifico dentro de todos los contextos guardados.
+
+#### JSON de Entrada
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
     <tr><td>id</td><td>Int</td><td>Identificador dedel contexto a buscar</td></tr>    
   </tbody></table>
 
@@ -129,6 +167,8 @@ Permite realizar la actualizacion de un contexto especifico, la API no ofrece la
     <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
     <tr><td>logo</td><td>String</td><td>En caso de requerir agregar/actualizar el logotipo debera de pasar el archivo en Base64 con extension jpg</td></tr>
 		<tr><td>file</td><td>String</td><td>En caso de requerir agregar/actualizar el contexto debera de pasar el archivo en Base64 con extension txt</td></tr>
+    <tr><td>nameLogo</td><td>String</td><td>En caso de requerir agregar/actualizar el logotipo debera de pasar el nombre del archivo</td></tr>
+		<tr><td>nameFile</td><td>String</td><td>En caso de requerir agregar/actualizar el contexto debera de pasar el nombre del archivo</td></tr>
   </tbody></table>
 
 #### Salida
