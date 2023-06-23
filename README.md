@@ -34,3 +34,107 @@ En el FrontEnd, se basa en dos secciones:
 
 
 
+# API IntegraS3-ChatGPT
+Es una API expuesta para realizar peticiones del chat para ayuda a los usuarios que tengan dudas sobre los modulos de integraS3.
+
+## /api/ContextoSoporte
+### ChatSetup
+Permite inicializar un chat considerando un contexto especifico, segun el tema indicado.
+
+#### JSON de Entrada
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+    <tr><td>conversationId</td><td>Guid</td><td>Identificador de la nueva conversacion a inicializar</td></tr>
+    <tr><td>contextId</td><td>Int</td><td>Identificador del contexto a usar en la conversacion, se provee de un catalogo el cual debe de estar previamente configurado</td></tr>
+  </tbody></table>
+	
+#### JSON de Salida
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+    <tr><td>conversationId</td><td>Guid</td><td>Identificador de la nueva conversacion inicializada</td></tr>
+    <tr><td>contextId</td><td>Int</td><td>Identificador del contexto a usar en la conversacion, se provee de un catalogo el cual debe de estar previamente configurado</td></tr>
+    <tr><td>message</td><td>String</td><td>Mensaje en caso de haber tener error durante la inicializacion</td></tr>
+  </tbody></table>
+	
+### Chat
+Permite realizar una serie de preguntas de un chat considerando el contexto especificado con apoyo de ChatSetup.
+
+#### JSON de Entrada
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+    <tr><td>conversationId</td><td>Guid</td><td>Identificador de la conversacion inicializada</td></tr>
+    <tr><td>contextId</td><td>Int</td><td>Identificador del contexto a usar en la conversacion, se provee de un catalogo el cual debe de estar previamente configurado</td></tr>
+    <tr><td>message</td><td>String</td><td>Pregunta realizada en el chat para que IA la procese con apoyo del contexto indicado</td></tr>
+  </tbody></table>
+
+#### JSON de Salida
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador de la respuesta obtenida</td></tr>
+    <tr><td>conversationId</td><td>Guid</td><td>Identificador de la conversacion inicializada</td></tr>    
+    <tr><td>choices</td><td>Object</td><td>Objeto que contiene la respuesa de IA</td></tr>
+		<tr><td>choices[0].message.content</td><td>String</td><td>Elemento que contiene la respuesta a la pregunta realizada</td></tr>
+  </tbody></table>
+
+### GetParents
+Permite obtener el listado de todos los contextos guardados.
+
+#### JSON de Entrada
+No Aplica
+
+#### JSON de Salida
+Lista de
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador del contexto</td></tr>
+    <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
+    <tr><td>logo</td><td>String</td><td>Ruta del logotipo</td></tr>
+		<tr><td>file</td><td>String</td><td>Ruta del contexto</td></tr>
+		<tr><td>contextSupportChildren</td><td>List</td><td>Listado de elementos con la misma estructura (id, name, logo, file, contextSupportChildren), en caso de que el contexto actual contenga contextos hijos</td></tr>
+  </tbody></table>
+
+### GetByParentId
+Permite obtener un contexto especifico dentro de todos los contextos guardados.
+
+#### JSON de Entrada
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+    <tr><td>id</td><td>Int</td><td>Identificador dedel contexto a buscar</td></tr>    
+  </tbody></table>
+
+#### JSON de Salida
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador del contexto</td></tr>
+    <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
+    <tr><td>logo</td><td>String</td><td>Ruta del logotipo</td></tr>
+		<tr><td>file</td><td>String</td><td>Ruta del contexto</td></tr>
+  </tbody></table>
+
+### Update
+Permite realizar la actualizacion de un contexto especifico, la API no ofrece la creacion de contextos, ya que esta configuracion debe de estar precargada.
+
+#### JSON de Entrada
+<table>
+  <thead><tr><th>Parametro</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>id</td><td>Int</td><td>Identificador del contexto a actualizar</td></tr>
+    <tr><td>name</td><td>String</td><td>Nombre del Contexto</td></tr>    
+    <tr><td>logo</td><td>String</td><td>En caso de requerir agregar/actualizar el logotipo debera de pasar el archivo en Base64 con extension jpg</td></tr>
+		<tr><td>file</td><td>String</td><td>En caso de requerir agregar/actualizar el contexto debera de pasar el archivo en Base64 con extension txt</td></tr>
+  </tbody></table>
+
+#### Salida
+<table>
+  <thead><tr><th>Status Code</th><th>Tipo</th><th>Descripcion</th></tr></thead>
+  <tbody>
+		<tr><td>200</td><td>Int</td><td>En caso de haber realizado la actualizacion de forma correcta</td></tr>
+    <tr><td>400</td><td>Int</td><td>En caso de haber realizado la peticion de forma incorrecta</td></tr>
+  </tbody></table> 
