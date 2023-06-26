@@ -16,7 +16,7 @@ const { chatSetup } = useHookChat();
 const modelChatSetup = ref<IChatModel>({
   contextId: 0,
   conversationId: '',
-  message: 'kiosko es un modulo de integras3',
+  message: '',
   contextFile: '',
 });
 const $useChat = useChatStore();
@@ -76,6 +76,10 @@ export const addEventClick = () => {
       const guid = genUID();
       modelChatSetup.value.conversationId = guid;
       modelChatSetup.value.contextId = this.dataset.supportid;
+      modelChatSetup.value.message =
+        this.dataset.supportid == 4
+          ? 'kiosko es un modulo de integras3'
+          : 'Estructura Organizacional del sistema Integra S3';
       $useChat.setChatStore(this.dataset.supportid);
       $useChat.setConversationId(guid);
       await chatSetup(modelChatSetup.value);

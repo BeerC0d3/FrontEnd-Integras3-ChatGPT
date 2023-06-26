@@ -14,6 +14,7 @@
               label="Accesar"
               icon="fa-solid fa-right-to-bracket"
               to="/admin/login"
+              target="_blank"
             />
           </q-card-section>
         </q-card>

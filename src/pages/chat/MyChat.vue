@@ -99,7 +99,7 @@ bus.on('refreshChat', async (chat: IChat) => {
 
   setTimeout(() => {
     //  Storage.UpdateQuestion(chat, responseChatGpt.value);
-    //const answerReplaced = replaceAnswer(answer.value);
+    // const answerReplaced = replaceAnswer(answer.value);
     const answerReplaced = replaceAnswer(responseChatGpt.value);
     // console.log(answerReplaced);
     Storage.UpdateQuestion(chat, answerReplaced);

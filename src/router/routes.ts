@@ -4,6 +4,7 @@ import { routes as authRoutes } from '../auth';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    redirect: '/app/MyChat',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: 'app', redirect: '/app/MyChat' },

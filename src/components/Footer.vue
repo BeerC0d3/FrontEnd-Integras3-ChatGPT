@@ -29,7 +29,7 @@
           icon="send"
           :style="styleButtom"
           @click="enterQuestion"
-          style="top: -0px; position: relative"
+          style="top: -10px; position: relative"
         />
       </div>
     </div>
@@ -82,6 +82,7 @@ const visibleButtonConversation = ref(false);
 
 const styleButtom = computed(() => ({
   visibility: visibleButtonConversation.value ? 'visible' : 'hidden',
+  // display: visibleButtonConversation.value ? 'block' : 'none',
 }));
 
 watch(
@@ -153,3 +154,4 @@ const setModelConversation = async (contexSupport: IChatContextSupport) => {
   // console.log;
 };
 </script>
+<style scoped></style>
