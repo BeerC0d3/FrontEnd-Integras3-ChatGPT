@@ -60,7 +60,6 @@ onBeforeMount(async () => {
 
 bus.on('drawerOpen', (drawerOpen: boolean) => {
   leftDrawerOpen.value = drawerOpen;
-  //console.log('recibiendo: ' + leftDrawerOpen.value);
 });
 </script>
 <style scoped>
